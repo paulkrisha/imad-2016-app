@@ -1,0 +1,39 @@
+<html>
+  <head>
+      <title>
+          Article three by Krishna
+      </title>
+  </head>  
+    
+  <body>
+      <div>
+          <a href='/'>Home</a>
+      </div>
+      <h3>Article One</h3>
+  
+        <div>
+            September 21, 2016
+        </div>
+        <div>
+            
+            <p>
+                This is article three. This is article three.  This is article three.  This is article three
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article three. This is article three.  This is article three.  This is article three
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+        </div>
+  
+  </body>  
+    
+   
+</html>
