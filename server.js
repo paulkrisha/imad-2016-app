@@ -25,7 +25,7 @@ var articleone = {
                   This is article one.  This is article one.  This is article one.  This is article one.
             </p>`
     
-}
+};
 
 
 function createTemplate(data){
