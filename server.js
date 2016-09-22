@@ -5,6 +5,74 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articles = {
+    'article-one' : {
+    title : 'Article one by Krishna',
+    heading : 'Article One',
+    date : 'September 21, 2016',
+    content : ` <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>`
+    
+},
+
+     'article-two'  : {
+    title : 'Article two by Krishna',
+    heading : 'Article two',
+    date : 'October 21, 2016',
+    content : ` <p>
+                This is  my second article.This is  my second article.This is  my second article.This is  my second article.
+                This is  my second article.This is  my second article. This is  my second article. This is  my second article.
+                This is  my second article. This is  my second article. This is  my second article. This is  my second article.
+            </p>
+            <p>
+               This is  my second article.This is  my second article.This is  my second article.This is  my second article.
+                This is  my second article.This is  my second article. This is  my second article. This is  my second article.
+                This is  my second article. This is  my second article. This is  my second article. This is  my second article. 
+            </p>
+            <p>
+                This is  my second article.This is  my second article.This is  my second article.This is  my second article.
+                This is  my second article.This is  my second article. This is  my second article. This is  my second article.
+                This is  my second article. This is  my second article. This is  my second article. This is  my second article.
+            </p>`
+    
+},
+
+     'article-three' : {
+    title : 'Article three by Krishna',
+    heading : 'Article Three',
+    date : 'November 21, 2016',
+    content : ` <p>
+                This is  my third article.This is  my third article.This is  my third article.This is  my third article.
+                This is  my third article.This is  my third article. This is  my third article. This is  my third article.
+                This is  my third article. This is  my third article. This is  my third article. This is  my third article.
+            </p>
+            <p>
+                This is  my third article.This is  my third article.This is  my third article.This is  my third article.
+                This is  my third article.This is  my third article. This is  my third article. This is  my third article.
+                This is  my third article. This is  my third article. This is  my third article. This is  my third article.
+            </p>
+            <p>
+                This is  my third article.This is  my third article.This is  my third article.This is  my third article.
+                This is  my third article.This is  my third article. This is  my third article. This is  my third article.
+                This is  my third article. This is  my third article. This is  my third article. This is  my third article.
+            </p>`
+    
+}
+
+};
 var articleone = {
     title : 'Article one by Krishna',
     heading : 'Article One',
@@ -69,8 +137,9 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req,res) {
-    res.send(createTemplate(articleone));
+app.get('/:articleName', function(req,res) {
+    var articleName = req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two', function(req,res) {
