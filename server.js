@@ -5,12 +5,69 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articleone = {
+    title : 'Article one by Krishna',
+    heading : 'Article One',
+    Date : 'September 21, 2016',
+    content : ` <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>
+            <p>
+                This is article one. This is article one.  This is article one.  This is article one
+                 This is article one.  This is article one.  This is article one.  This is article one
+                  This is article one.  This is article one.  This is article one.  This is article one.
+            </p>`
+    
+}
+
+
+function createTemplate(data){
+var title = data.title;
+var heading = data.heading;
+var date = data.date;
+var content = data.content;
+var htmlTemlpate = ` <html>
+  <head>
+      <title>
+        ${title}
+      </title>
+  </head>  
+    
+  <body>
+      <div>
+          <a href='/'>Home</a>
+      </div>
+      <h3>${heading}</h3>
+  
+        <div>
+            ${date}
+        </div>
+        <div>
+            
+            ${content}
+        </div>
+  
+  </body>  
+    
+   
+</html>`;
+return htmlTemplate;
+}
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function(req,res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+    res.send(createTemplate(articleone));
 });
 
 app.get('/article-two', function(req,res) {
