@@ -45,7 +45,7 @@ submit.onclick = function(){
             }
         }
     }   
-    request.open('GET','http://paulkrisha.imad.hasura-app.io/counter',true);
+    request.open('GET','http://paulkrisha.imad.hasura-app.io',true);
     request.send(null);
     var nameInput = document.getElementById('name');
     var name = nameInput.value;
