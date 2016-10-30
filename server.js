@@ -4,7 +4,7 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-var Pool=require('pg').Pool;
+/*var Pool=require('pg').Pool;
 var config={
     user:'paulkrisha',
     database:'paulkrisha',
@@ -12,7 +12,7 @@ var config={
     port:'5432',
     password:process.env.DB-PASSWORD
 };
-
+*/
 
 
 function createTemplate(data){
@@ -69,7 +69,7 @@ app.get('/submit-name', function(req,res) {
     res.send(JSON.stringify(names));
 });
 
-var pool=new Pool(config);
+/*var pool=new Pool(config);
 app.get('/articles/:articleName', function(req,res) {
     pool.query("SELECT * FROM article WHERE title = $1" , [req.params.articleName], function(err,result){
         if (err){
@@ -86,7 +86,7 @@ app.get('/articles/:articleName', function(req,res) {
         }
     });
 });
-
+*/
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
