@@ -65,8 +65,8 @@ submit.onclick = function(){
             }
         }
     };
-    var username = document.getElemenyByid('username').value;
-    var password = document.getElemenyByid('password').value;
+    var username = document.getElemenyById('username').value;
+    var password = document.getElemenyById('password').value;
     console.log(username);
     console.log(password);
     request.open('POST','http://paulkrisha.imad.hasura-app.io/login',true);
