@@ -12,7 +12,7 @@
 //};
 
 
-var button = document.getElementById('counter');
+/* var button = document.getElementById('counter');
 button.onclick = function(){
     var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
@@ -26,7 +26,7 @@ button.onclick = function(){
     }
     request.open('GET','http://paulkrisha.imad.hasura-app.io/counter',true);
     request.send(null);
-};
+}; 
 
 var submit = document.getElementById('submit-btn');
 submit.onclick = function(){
@@ -50,4 +50,26 @@ submit.onclick = function(){
     request.open('GET','http://paulkrisha.imad.hasura-app.io/submit-name?name='+name,true);
     request.send(null);
     
+}; */
+var submit = document.getElementById('submit-btn');
+submit.onclick = function(){
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if(request.readyState === XMLHttpRequest.DONE){
+            if(request.status === 200){
+               alert('Logged in successfully');
+            }else if(request.status === 403){
+                alert('username/password incorrect');
+            }else if (request.status === 500){
+                alert('Something went wrong on the server');
+            }
+        }
+    };
+    var username = document.getElemenyByid('username').value;
+    var password = document.getElemenyByid('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST','http://paulkrisha.imad.hasura-app.io/login',true);
+    request.setRequestHeader('Content-Type','application/json');
+    request.send(JSON.stringify({username:username,password:password}));
 };
