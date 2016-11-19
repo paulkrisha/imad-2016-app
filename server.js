@@ -148,10 +148,12 @@ app.get('/check-login',function(req,res){
         res.send('You are not logged in');
     }
 });
+
 app.get('/logout',function(req,res){
     delete req.session.auth;
     res.send('Logged out');
 });
+
 app.get('/articles/:articleName', function(req,res) {
     pool.query("SELECT * FROM article WHERE title = $1" , [req.params.articleName], function(err,result){
         if (err){
