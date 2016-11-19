@@ -5,6 +5,7 @@ var Pool = require('pg').Pool;
 var app = express();
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var config={
     user:'paulkrisha',
@@ -16,6 +17,10 @@ var config={
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
+app.use(session({
+    secret : 'Some Random Secret Values',
+    cookie : {maxAge : 1000*60*60*24830}
+}));
 
 function createTemplate(data){
 var title = data.title;
@@ -79,7 +84,7 @@ app.post('/create-user',function(req,res){
         if(err){
             res.status(500).send(err.toString());
         } else{
-            res.send('User successfully created ; ' + username)
+            res.send('User successfully created ; ' + username);
         }
     });
 });
@@ -98,7 +103,8 @@ app.post('/login',function(req,res){
             var salt=dbString.split('$')[2];
             var hashedPassword = hash(password,salt);
             if(hashedPasssword===dbstring){
-                res.send('Credentials correct !');
+                req.session.auth={userId:result.rows[0].id};
+                res.send('Credentials Correct!');
             }else{
                 res.send(403).send('Username/password is invalid');
             }
@@ -135,7 +141,17 @@ app.get('/submit-name', function(req,res) {
     res.send(JSON.stringify(names));
 });
 
-
+app.get('/check-login',function(req,res){
+    if(req.session && req.session.auth && req.session.auth.userId){
+        res.send('You are logged in : '+req.session.auth.userId.toString());
+    }else{
+        res.send('You are not logged in');
+    }
+});
+app.get('/logout',function(req,res){
+    delete req.session.auth;
+    res.send('Logged out');
+});
 app.get('/articles/:articleName', function(req,res) {
     pool.query("SELECT * FROM article WHERE title = $1" , [req.params.articleName], function(err,result){
         if (err){
