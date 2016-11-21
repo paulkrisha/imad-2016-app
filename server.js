@@ -18,7 +18,7 @@ var config={
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(session({
-    secret : 'Some Random Secret Values',
+    secret : 'SomeRandomSecretValues',
     cookie : {maxAge : 1000*60*60*24830}
 }));
 
@@ -103,7 +103,7 @@ app.post('/login',function(req,res){
             var salt=dbString.split('$')[2];
             var hashedPassword = hash(password,salt);
             if(hashedPassword===dbString){
-                //req.session.auth={userId:result.rows[0].id};
+                req.session.auth={userId:result.rows[0].id};
                 res.send('Credentials Correct!');
             }else{
                 res.send(403).send('Username/password is invalid');
