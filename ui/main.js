@@ -51,7 +51,7 @@ submit.onclick = function(){
     request.send(null);
     
 }; */
-function loadLoginform(){
+function loadLoginForm(){
     var loginHtml = `
     <h3>Login/Register to unlock awsome features</h3>
     <input type="text" id = "username" placeholder = "username"/>
